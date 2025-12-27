@@ -70,7 +70,28 @@ TOOL_REGISTRY: Dict[str, Callable[..., str]] = {
 # ==========================
 
 # TODO: Fill this in!
-YOUR_SYSTEM_PROMPT = ""
+YOUR_SYSTEM_PROMPT = """
+You are a tool-calling assistant.
+
+Your task is to call a tool by returning EXACTLY one JSON object and nothing else.
+
+Rules:
+- Output must be valid JSON
+- Do NOT use markdown or code fences
+- Do NOT include explanations or extra text
+- Do NOT include comments
+- The JSON must have this exact structure:
+
+{
+  "tool": "<tool_name>",
+  "args": { }
+}
+
+You must call this tool:
+- output_every_func_return_type
+
+Do not provide any arguments.
+"""
 
 
 def resolve_path(p: str) -> str:
@@ -109,6 +130,7 @@ def run_model_for_tool_call(system_prompt: str) -> Dict[str, Any]:
         options={"temperature": 0.3},
     )
     content = response.message.content
+    print(content)
     return extract_tool_call(content)
 
 

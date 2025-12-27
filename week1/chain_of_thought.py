@@ -8,7 +8,35 @@ load_dotenv()
 NUM_RUNS_TIMES = 5
 
 # TODO: Fill this in!
-YOUR_SYSTEM_PROMPT = ""
+YOUR_SYSTEM_PROMPT = """
+solve this problem, and give the final answer on the line as "Answer: <number>"
+Print all intermediate steps of thinking.
+
+<example>
+what is 123! (mod 100)? 
+123! (mod 100) = (122! (mod 100) * 123 (mod 100)) mod 100
+so now we need to calculate 122! (mod 100) and 123 (mod 100)
+we can recursively compute 122! (mod 100) as follows:
+122! (mod 100) = (121! (mod 100) * 122 (mod 100)) mod 100
+and so on, until we reach the base case of 1! (mod 100)
+Answer: 0
+</example>
+
+<example>
+what is 3^{123} (mod 101)?
+to compute a^b (mod c), we can use the method of exponentiation by squaring.
+this involves breaking down the exponentiation into smaller parts and using the properties of modular arithmetic to keep the numbers manageable.
+We can rewrite a^b as a^(b/2) * a^(b/2) if b is even and a^(b/2) * a^(b/2) * a if b is odd. Forexample
+2^8 = 2^4 * 2^4 and 2^9 = 2^4 * 2^4 * 2
+in example of 3^{123} (mod 101), we can use the same approach.
+3^{123} (mod 101) = (3^{61} (mod 101) * 3^{61} (mod 101) * 3) mod 101
+so now we need to calculate 3^{61} (mod 101)
+we can recursively compute 3^{61} (mod 101) as follows:
+3^{61} (mod 101) = (3^{30} (mod 101) * 3^{30} (mod 101) * 3 (mod 101)) mod 101
+and so on, until we reach the base case of 3^{1} (mod 101)
+Answer: 46
+</example>
+"""
 
 
 USER_PROMPT = """

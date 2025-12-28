@@ -15,8 +15,12 @@ Keep the implementation minimal.
 """
 
 # TODO: Fill this in!
-YOUR_REFLEXION_PROMPT = ""
-
+YOUR_REFLEXION_PROMPT = """
+Review the previously generated Python function is_valid_password for correctness, edge cases, and compliance with the system instructions.
+Identify any logical errors, missing constraints, or violations (such as extra output, comments, or formatting issues).
+Then produce a corrected version of the function is_valid_password that fully satisfies the requirements.
+Output ONLY a single fenced Python code block.
+"""
 
 # Ground-truth test suite used to evaluate generated code
 SPECIALS = set("!@#$%^&*()-_")
